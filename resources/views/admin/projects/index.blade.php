@@ -23,7 +23,7 @@
                     <tr>
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
-                        <td>{{ $project->category }}</td>
+                        <td>{{ $project->type->label }}</td>
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->getAbstract(50) }}</td>
 
