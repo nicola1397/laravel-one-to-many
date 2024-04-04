@@ -19,7 +19,7 @@ class ProjectSeeder extends Seeder
         $project = new Project;
         $project->title;
         $project->slug = Str::slug($project->title);
-        $project->category;
+        $project->type_id;
         $project->description;
         $project->save();
     }

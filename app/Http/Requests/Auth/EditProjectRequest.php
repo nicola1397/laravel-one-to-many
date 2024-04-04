@@ -26,7 +26,7 @@ class EditProjectRequest extends FormRequest
         return [
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:255',
-            'category_id' => 'required',
+            'type_id' => 'required|exists:types,id',
         ];
     }
 
@@ -43,7 +43,9 @@ class EditProjectRequest extends FormRequest
             'title.max' => 'La lunghezza massima è di 100 caratteri',
             'description.required' => "Il progetto deve avere una descrizione.",
             'description.string' => "La descrizione dev'essere un testo",
-            'category_id.required' => "La categoria è obbligatoria.",
+            'type_id.required' => "La categoria è obbligatoria.",
+            'type_id.exists' => "La categoria non esiste.",
+
         ];
     }
 }

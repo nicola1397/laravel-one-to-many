@@ -14,7 +14,7 @@
         </button>
 
         <h1 class="mt-3 fw-bold">{{ $project->title }}</h1>
-        <span class="d-inline-block me-2">Categoria</span><code class="d-inline-block fs-5">{{ $project->category }}</code>
+        <span class="d-inline-block me-2">Categoria</span><code class="d-inline-block fs-5">{{ $project->type_id }}</code>
 
         <span class="mt-4 fs-5 fw-bold d-block">Descrizione:</span>
         <p>{{ $project->description }}</p>

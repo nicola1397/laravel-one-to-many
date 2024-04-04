@@ -25,15 +25,21 @@
                     @enderror
                 </div>
 <!-- CATEGORIA -->
-                <div class="col-6">
-                    <label for="category" class="form-label">Categoria</label>
-                    <input type="text" class="form-control @error('category') is-invalid @enderror" id="category"
-                        name="category" value="{{ $errors->any() ? old('category') : $project->category }}">
+<div class="col-6">
+                    <label for="type_id" class="form-label">Categoria</label>
+                    <select type="text" class="form-select @error('type_id') is-invalid @enderror" id="type_id"
+                        name="type_id" value="{{ old('type_id')}}">
+                        <option value="">Seleziona una categoria</option>
+                    @foreach($types as $type)
+                    <option {{ $type->id == old('type_id', $project->type_id) ? 'selected' : ''}} value="{{ $type->id }}">{{ $type->label }}</option>
+                    @endforeach
+                    </select>
 
-                    @error('category')
+                    @error('type_id')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 <div class="col-12">
                     <label for="description" class="form-label">Descrizione</label>
