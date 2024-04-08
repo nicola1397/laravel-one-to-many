@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -28,7 +30,7 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project;
-        $types = Types::all();
+        $types = Type::all();
         return view('admin.projects.create', compact('project', 'types'));
     }
 
@@ -38,7 +40,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateProjectRequest $request)
     {
         $request->validated();
 
@@ -79,7 +81,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         $request->validated();
 

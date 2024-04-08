@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->string('label', 30);
-            $table->char('color', 7);
+            $table->char('color', 7)->default('#000000');
             $table->timestamps();
         });
     }

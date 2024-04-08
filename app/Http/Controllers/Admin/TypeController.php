@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateTypeRequest;
+use App\Http\Requests\EditTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,10 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::paginate();
+
+        return view('admin.types.index', compact('types'));
+
     }
 
     /**
@@ -24,7 +30,9 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        $types = new Type;
+
+        return view('admin.types.create', compact('types'));
     }
 
     /**
@@ -33,9 +41,20 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateTypeRequest $request)
     {
-        //
+        $request->validated();
+
+
+        $data = $request->all();
+
+        $new_type = new Type;
+
+        $new_type->fill($data);
+
+        $new_type->save();
+
+        return redirect()->route('admin.types.show', $new_type)->with('message', 'Tipo creato con successo');
     }
 
     /**
@@ -46,7 +65,8 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
+
     }
 
     /**
@@ -57,7 +77,8 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
+
     }
 
     /**
@@ -67,9 +88,16 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $request->validated();
+
+        $data = $request->all();
+
+        $type->update($data);
+
+        return redirect()->route('admin.types.show', compact('type'))->with('message', 'Tipo modificato con successo');
+
     }
 
     /**
@@ -80,6 +108,9 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.types.index')->with('message', 'Tipo eliminato con successo');
+
     }
 }

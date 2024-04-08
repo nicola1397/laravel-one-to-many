@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProjectRequest extends FormRequest
+class EditTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:100',
-            'description' => 'required|string|max:255',
-            'type_id' => 'required|exists:types,id',
+            'label' => 'required|string|max:25',
+            'description' => 'string|max:255',
+
         ];
     }
 
@@ -38,13 +38,11 @@ class CreateProjectRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Il titolo non può essere vuoto',
-            'title.string' => "Il titolo dev'essere una stringa",
-            'title.max' => 'La lunghezza massima è di 100 caratteri',
-            'description.required' => "Il progetto deve avere una descrizione.",
+            'label.required' => 'L\'etichetta non può essere vuota',
+            'label.string' => "L'etichetta dev'essere una stringa",
+            'label.max' => 'La lunghezza massima è di 100 caratteri',
             'description.string' => "La descrizione dev'essere un testo",
-            'type_id.required' => "La categoria è obbligatoria.",
-            'type_id.exists' => "La categoria non esiste.",
+            'description.max' => "La descrizione dev'essere lunga massino 255 caratteri",
 
         ];
     }
